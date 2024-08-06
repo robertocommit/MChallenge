@@ -72,27 +72,43 @@ This section proposes immediate and medium-term actions to alleviate the identif
 ### Immediate Actions:
 - **Restart the Instance**
     - **Action**: Provides temporary relief by clearing current session and connection buildup.
-    - **Impact**: This may alleviate immediate system strain and improve response times temporarily.
+    - **Justification**: Effective for immediately resolving memory leaks or clearing stuck processes, as recommended in Metabase’s operational best practices.
+    - **Potential Risks**: The restart may disrupt user activity, and frequent restarts could indicate underlying unresolved issues that need more permanent solutions.
+    - **Impact**: This action can quickly alleviate system strain and improve response times, albeit temporarily.
 - **Increase the Instance Server Size**
     - **Action**: Expands server capacity to better handle current and near-future workloads.
-    - **Impact**: A larger server can manage increased user demand and reduce the risk of performance bottlenecks.
+    - **Justification**: Supported by historical data showing CPU usage peaks at 100% during workday starts, indicating insufficient capacity for peak loads.
+    - **Potential Risks**: Higher operational costs and the possibility of over-provisioning, which could lead to unnecessary expenditure if not regularly evaluated.
+    - **Impact**: A larger server can manage increased user demand and reduce the risk of performance bottlenecks, enhancing stability and user experience.
 - **Remove Specific Dashboards from Metabase Home**
     - **Action**: Simplifies the initial load by reducing the data processed on the home page.
+    - **Justification**: Dashboard complexity is a known cause of slow load times; reducing complexity can significantly improve initial access times.
+    - **Potential Risks**: Users may lose quick access to key data previously available at login, potentially impacting their workflow or satisfaction.
     - **Impact**: Users experience faster access and navigation, improving overall user satisfaction and system efficiency.
 
 ### Medium term actions:
 - **Implement Time-Based Horizontal Scaling**
     - **Action**: Dynamically adjust the number of Metabase instances to align with fluctuations in daily traffic.
+    - **Justification**: Matches computing resources with user demand, preventing both underutilization and overload.
+    - **Potential Risks**: Complexity in implementation, potential for misconfiguration, and increased management overhead.
     - **Impact**: Ensures optimal resource allocation, maintaining performance during peak periods without over-provisioning during low-usage times.
 - **Implement Query Caching**
     - **Action**: Cache results of frequently run queries to reduce redundant processing.
+    - **Justification**: Improves speed and efficiency by preventing repeated execution of the same queries.
+    - **Potential Risks**: Stale data issues if not properly invalidated; increased memory usage.
     - **Impact**: Decreases direct database access for common queries, significantly speeding up response times and reducing load.
 - **Review and Adjust Connection Pooling Settings**
     - **Action**: Optimize how database connections are managed and allocated across user requests.
+    - **Justification**: Ensures that database connections are efficiently used and not a bottleneck.
+    - **Potential Risks**: Improper settings can lead to resource exhaustion or underutilization.
     - **Impact**: Improves database efficiency and stability, ensuring smoother user experiences under varying load conditions.
 - **Evaluate Presto Usage**
     - **Action**: Assess the current use of Presto and consider transitioning to PostgreSQL for application data management.
+    - **Justification**: Targets optimal use of technology tailored to application needs and performance characteristics.
+    - **Potential Risks**: Transition risks, including downtime and data migration challenges; compatibility issues.
     - **Impact**: Potentially simplifies the technology stack, reducing overhead and improving performance and scalability.
 - **Monitor Performance with Metabase Analytics (Pro/Enterprise)**
     - **Action**: Use advanced analytics tools to continuously track and analyze performance metrics and user activity.
+    - **Justification**: Enables data-driven decisions for tuning and scaling.
+    - **Potential Risks**: May require significant resources for setup and ongoing management; privacy concerns if not properly managed.
     - **Impact**: Enables proactive identification and resolution of performance bottlenecks, enhancing overall system efficiency.
